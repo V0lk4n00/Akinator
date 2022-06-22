@@ -1,0 +1,121 @@
+<!doctype html>
+
+<html lang="pl">
+    <head>
+        <title> Akinator - Dokumentacja Techniczna</title>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <h1> Akinator </h1>
+		<p> 
+			Wersja finalna prostego programu typu 'Akinator' stworzona w ramach projektu na ocenę z przedmiotu 'Wprowadzenie do Programowania'.
+		</p>
+		
+		<br>
+
+        <h2> <b> Spis treści </b> </h2>
+
+		<ol>
+			<li> Instrukcja uruchomienia </li>
+			<li> Opis funkcji </li>
+			<li> Opis działania programu </li>
+			<li> Screeny z działania programu </li>
+		</ol>
+		
+		<br> <br>
+
+		<h2> Instrukcja uruchomienia </h2>
+
+		<p> 
+			Grę uruchamia się z pliku 'Akinator.exe', bądź poprzez skopiowanie kodu i wklejenie go w CodeBlocks, VSC itp... <br>
+			W grę gra się używając wyłącznie klawiatury. Gdy gra prosi, należy wpisać 'tak' lub 'nie', koniecznie z małych liter. Gra poprosi także o wpisanie swojego nicku. <br>
+			Literówka powoduje natychmiastowe zakończenie gry. <br><br>
+		</p>
+
+		<br><br>
+
+		<h2> Opis funkcji </h2>
+
+		<p>
+			converter - konwertuje wpisywane 'tak' i 'nie' odpowiednio na 1 i 0. <br>
+			compare - porównuje tablice za pomocą zgodności poszczególnych znaków w komórkach, zwraca 1 w przypadku zgodności i 0 w przypadku niezgodności. <br>
+			first_category - określa kategorię pytań po 3 pytaniach wstępnych, każda kategoria ma własny trójcyfrowy kod, jeśli to co wpisaliśmy z klawiatury pasuje do któregoś z kodów - funkcja zwraca cyfrę oznaczającą kolejną kategorię. <br>
+			human, animal, fake_human, fake_thing - określają postać na podstawie dziewięciocyfrowego kodu. <br>
+			struct info - struktura trzymająca nick, odpowiedź końcową i czas gry. <br>
+		</p>
+		
+		<br><br>
+		
+		<h2> Opis działania programu </h2>
+		
+		<p>
+			Program działa prosto: ma zapisane określone pytania, po których 'domyśla się' o jaką postać chodzi graczowi. Gracz odpowiada na pytania 'tak' lub 'nie', które następnie są konwertowane na 1 i 0, które z kolei są zapisywane w tablicy.
+			Następnie taka tablica jest przyrównywana do określonych już wcześniej tablic - jeśli jest ona zgodna z jedną z nich, program ustala kolejne pytania na te pod daną tablicą. Początkowo są 3 pytania.
+			Po udzieleniu odpowiedzi na nie zadaje on bardziej szczegółowe pytania w celu ustalenia konkretnej postaci. Zasada działania programu jest nadal taka sama, tylko pytań jest więcej - 9. <br>
+			
+			Po znalezieniu osoby program podsumowuje wszystkie informacje i wpisuje je do pliku: nick gracza, postać o której myślał i czas gry. <br><br>
+			
+			Poniżej pokazuję kody i związane z nimi kategorie i postacie.<br><br>
+			
+			<h3> Pierwsza kategoria: </h3>
+			int real_person[3]={1,1,1};             // jakis czlowiek <br>
+			int real_thing[3]={0,0,1};              // zwierze <br>
+			int maybe_animal[3]={1,0,1};            // moze dwunozne zwierze <br>
+			int not_real_person[3]={1,1,0};         // czlowiek z filmu lub ksiazki <br>
+			int not_real_thing[3]={0,0,0};          // jakas zmyslona kreatura <br>
+			int maybe_not_real_thing[3]={1,0,0};    // jakas dwunozna zmyslona kreatura <br>
+													// bledne: 0,1,1 i 0,1,0 <br><br><br>
+													
+			<h3> Druga Kategoria: </h3>
+			// jakis czlowiek<br>
+			int papaj[9]={1,0,0,0,0,0,0,1,0};       // Jan Pawel 2<br>
+			int pooh[9]={0,0,1,0,0,1,1,1,0};        // Xi Jinping<br>
+			int walesa[9]={1,0,1,1,0,1,1,0,0};      // Lech Walesa<br>
+			int tokarczuk[9]={1,1,0,1,1,1,0,0,0};   // Olga Tokarczuk<br>
+			int obama[9]={0,0,1,1,0,1,1,0,0};       // Barack Obama<br>
+			int szymborska[9]={1,1,0,1,1,0,0,0,0};  // Wislawa Szymborska<br>
+			int sienkiewicz[9]={1,0,0,1,1,0,0,0,1}; // Henryk Sienkiewicz<br>
+			int reymont[9]={1,0,0,1,1,0,0,0,0};     // Wladyslaw Reymont<br>
+													// reszty nie ma wiec program uznaje wyzszosc gracza<br><br><br>
+			// zwierze i moze dwunozne zwierze										
+			int slon[9]={1,1,0,1,0,1,1,0,0};        // slon<br>
+			int nietoperz[9]={0,1,1,1,0,1,0,0,0};   // nietoperz<br>
+			int pies[9]={0,0,0,1,0,1,1,1,0};        // pies<br>
+			int kot[9]={0,0,0,1,0,1,1,0,0};         // kot<br>
+			int delfin[9]={0,1,0,1,1,1,0,0,0};      // delfin<br>
+			int orka[9]={1,1,0,1,1,1,0,0,1};        // orka<br>
+			int strus[9]={1,1,0,1,0,0,0,0,0};       // strus<br>
+			int papuga[9]={0,1,1,1,0,0,0,0,1};      // papuga<br>
+													// reszty nie ma wiec program uznaje wyzszosc gracza<br><br><br>
+			
+			// czlowiek z filmu lub ksiazki
+			int harry[9]={1,1,1,0,1,0,0,0,0};       // Harry Potter (Harry Potter)<br>
+			int hermiona[9]={1,1,1,0,0,0,0,0,0};    // Hermiona Granger (Harry Potter)<br>
+			int luke[9]={1,1,1,0,1,1,0,0,1};        // Luke Skywalker (Gwiezdne Wojny)<br>
+			int beth[9]={1,0,0,0,0,0,1,0,0};        // Beth Harmon (Gambit Królowej)<br>
+			int clarke[9]={0,0,0,1,1,0,0,0,1};      // Isaac Clarke (Dead Space)<br>
+			int tesv[9]={0,1,0,1,1,1,0,0,0};        // Dovakhiin (The Elder Scrolls V: Skyrim)<br>
+			int thorin[9]={0,0,1,0,1,1,0,1,0};      // Thorin Debowa Tarcza (krasnolud? jaki krasnolud? :X)<br>
+			int xDDDDDD[9]={1,1,0,0,0,1,0,0,1};     // Rey Skywalker (Gwiezdne Wojny)<br>
+													// reszty nie ma wiec program uznaje wyzszosc gracza<br><br><br>
+			
+			// jakas zmyslona kreatura i jakas dwunozna zmyslona kreatura
+			int creeper[9]={1,1,0,0,1,1,0,0,0};     // Creeper (Minecraft)<br>
+			int pepe[9]={1,1,0,1,1,0,0,0,0};        // Pepe The Frog (Internet)<br>
+			int kraken[9]={0,1,0,0,1,1,1,0,0};      // Kraken (ogolnie fantastyka)<br>
+			int elf[9]={0,0,0,0,1,0,0,1,0};         // Elf (ogolnie fantastyka)<br>
+			int spongebob[9]={1,0,1,0,1,0,1,1,1};   // Spongebob (Spongebob Kanciastoporty)<br>
+			int amogus[9]={1,0,0,1,1,0,0,1,0};      // Amogus (Among Us)<br>
+			int shrek[9]={0,1,1,0,1,1,0,0,0};       // Shrek (Shrek)<br>
+			int krasnolud[9]={1,0,1,0,1,0,0,1,0};   // Krasnolud (ogolnie fantastyka)<br>
+													// reszty nie ma wiec program uznaje wyzszosc gracza<br><br><br>
+		</p>
+		
+		<p>
+			Link do zrzutów ekranu z działania aplikacji: https://imgur.com/a/NLzdRgA
+		</p>
+
+	</body>
+	
+</html>
